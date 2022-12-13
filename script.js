@@ -6,6 +6,14 @@ function createGrid(n) {
     gridCells.classList.add('grid')
     container.appendChild(gridCells);
   };
+  let gridCells = document.querySelectorAll('.grid');
+  gridCells.forEach(cell => cell.addEventListener("mouseenter", mouseOver));
+
+  let clearButton = document.getElementById('clear');
+  clearButton.addEventListener("click", clearGrid);
+
+  let newButton = document.getElementById('new');
+  newButton.addEventListener("click", newGrid);
 };
 
 function mouseOver() {
@@ -32,11 +40,3 @@ function newGrid() {
 }
 
 createGrid(16);
-let gridCells = document.querySelectorAll('.grid');
-gridCells.forEach(cell => cell.addEventListener("mouseenter", mouseOver));
-
-let clearButton = document.getElementById('clear');
-clearButton.addEventListener("click", clearGrid);
-
-let newButton = document.getElementById('new');
-newButton.addEventListener("click", newGrid);
