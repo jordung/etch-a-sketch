@@ -1,13 +1,16 @@
 const container = document.querySelector('.container');
+const DEFAULT_SIZE = 16;
+
 
 function createGrid(n) {
+  container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+  container.style.gridTemplateRows = `repeat(${n}, 1fr)`;
   for (let i = 0; i < (n * n); i++) {
-    let gridCells = document.createElement('div');
-    gridCells.classList.add('grid')
-    container.appendChild(gridCells);
+    let cell = document.createElement('div');
+    cell.classList.add('grid')
+    cell.addEventListener("mouseenter", mouseOver);
+    container.appendChild(cell);
   };
-  let gridCells = document.querySelectorAll('.grid');
-  gridCells.forEach(cell => cell.addEventListener("mouseenter", mouseOver));
 
   let clearButton = document.getElementById('clear');
   clearButton.addEventListener("click", clearGrid);
@@ -17,12 +20,12 @@ function createGrid(n) {
 };
 
 function mouseOver() {
-  this.style.backgroundColor = "black";
+  this.classList.add('hoverEffect')
 };
 
 function clearGrid() {
-  gridCells.forEach(cell => cell.style.backgroundColor = "white");
-  alert("cleared!");
+  let gridCells = document.querySelectorAll('.grid');
+  gridCells.forEach(cell => {cell.classList.remove('hoverEffect')});
 }
 
 function newGrid() {
@@ -39,4 +42,4 @@ function newGrid() {
   alert(n);
 }
 
-createGrid(16);
+createGrid(DEFAULT_SIZE);
